@@ -12,9 +12,12 @@
     "log-ios": "react-native log-ios"
   },
   "dependencies": {
+    "@react-native-masked-view/masked-view": "^0.3.2",
     "@react-navigation/native": "^6.1.18",
+    "@react-navigation/stack": "^6.4.1",
     "react": "19.0.0",
     "react-native": "0.79.1",
+    "react-native-gesture-handler": "^2.25.0",
     "react-native-safe-area-context": "^5.4.0",
     "react-native-screens": "^4.10.0"
   },
