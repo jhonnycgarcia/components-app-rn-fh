@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { View, Text, StyleSheet, Animated, SafeAreaView, PanResponder } from 'react-native';
+import { StyleSheet, Animated, SafeAreaView, PanResponder } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 export const Animation102Screen = () => {
