@@ -10,7 +10,11 @@ interface Props {
 
 export const CustomView = ({ style, children }: Props) => {
     return (
-        <View style={[globalStyles.mainContainer, style]}>
+        <View style={[
+            globalStyles.mainContainer,
+            globalStyles.globalMargin,
+            style,
+        ]}>
             {children}
         </View>
     );
