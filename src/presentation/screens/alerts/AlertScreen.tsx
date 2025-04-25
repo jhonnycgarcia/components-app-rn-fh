@@ -26,27 +26,38 @@ export const AlertScreen = () => {
             style: 'destructive',
           },
           {text: 'OK', onPress: () => console.log('OK Pressed')},
-        ], { 
+        ], {
             cancelable: true,
             onDismiss: () => console.log('onDismiss'),
         });
+
+    const showPrompt = () => {
+        Alert.prompt(
+            'Correo electrónico',
+            'Ingrese su correo electrónico',
+            (valor: string) => console.log({valor}),
+            'secure-text',
+            'test@test.com',
+            'number-pad',
+        );
+    };
 
     return (
         <CustomView>
             <Title text="AlertScreen" safe />
             <Button
                 text="Alerta - 2 Botones"
-                onPress={() => createTwoButtonAlert()}
+                onPress={createTwoButtonAlert}
             />
             <View style={{ height: 10 }} />
             <Button
                 text="Alerta - 3 Botones"
-                onPress={() => createThreeButtonAlert()}
+                onPress={createThreeButtonAlert}
             />
             <View style={{ height: 10 }} />
             <Button
                 text="Prompt"
-                onPress={() => {}}
+                onPress={showPrompt}
             />
         </CustomView>
     );
