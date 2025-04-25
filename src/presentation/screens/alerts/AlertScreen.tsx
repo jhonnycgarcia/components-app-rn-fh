@@ -1,5 +1,8 @@
 import { Alert, View } from 'react-native';
+import prompt from 'react-native-prompt-android';
+
 import { Button, CustomView, Title } from '../../components';
+import { showPrompt } from '../../../config/adapters/prompt.adapter';
 
 export const AlertScreen = () => {
 
@@ -31,15 +34,31 @@ export const AlertScreen = () => {
             onDismiss: () => console.log('onDismiss'),
         });
 
-    const showPrompt = () => {
-        Alert.prompt(
+    const onShowPrompt = () => {
+        // ! codigo nativo, no funciona en android
+       /*  Alert.prompt(
             'Correo electrónico',
             'Ingrese su correo electrónico',
             (valor: string) => console.log({valor}),
             'secure-text',
             'test@test.com',
             'number-pad',
-        );
+        ); */
+
+        showPrompt({
+            title: 'Correo electrónico',
+            subTitle: 'Ingrese su correo electrónico',
+            buttons: [
+                {
+                    text: 'Cancel',
+                    onPress: () => console.log('Cancel Pressed'),
+                    style: 'destructive',
+                },
+                {text: 'OK', onPress: () => console.log('OK Pressed')},
+            ],
+            placeholder: 'test@test.com',
+            defaultValue: '',
+        });
     };
 
     return (
@@ -57,7 +76,7 @@ export const AlertScreen = () => {
             <View style={{ height: 10 }} />
             <Button
                 text="Prompt"
-                onPress={showPrompt}
+                onPress={onShowPrompt}
             />
         </CustomView>
     );
