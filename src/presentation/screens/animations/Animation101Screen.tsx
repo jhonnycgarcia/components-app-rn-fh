@@ -1,9 +1,11 @@
 import { View, StyleSheet, Pressable, Text, Animated, Easing } from 'react-native';
-import { colors } from '../../../config/theme/theme';
-import { useRef } from 'react';
+import { useContext } from 'react';
 import { useAnimation } from '../../hooks/useAnimation';
+import { ThemeContext } from '../../context/ThemeContext';
+import { Button, CustomView } from '../../components';
 
 export const Animation101Screen = () => {
+    const { colors } = useContext(ThemeContext);
     const {
         animatedOpacity,
         animatedTop,
@@ -13,7 +15,7 @@ export const Animation101Screen = () => {
     } = useAnimation();
 
     return (
-        <View style={styles.container}>
+        <CustomView margin style={styles.container}>
             <Animated.View style={[
                 styles.purpleBox,
                 {
@@ -21,9 +23,11 @@ export const Animation101Screen = () => {
                     transform: [{
                         translateY: animatedTop,
                     }],
+                    backgroundColor: colors.primary,
                 },
             ]} />
-            <Pressable
+            <Button
+                text="FadeIn"
                 onPress={() => {
                     fadeIn({});
                     startMovingTopPosition({
@@ -33,16 +37,13 @@ export const Animation101Screen = () => {
                     });
                 }}
                 style={{ marginTop: 10 }}
-            >
-                <Text>FadeIn</Text>
-            </Pressable>
-            <Pressable
+            />
+            <Button
+                text="FadeOut"
                 onPress={() => fadeOut({})}
                 style={{ marginTop: 10 }}
-            >
-                <Text>FadeOut</Text>
-            </Pressable>
-        </View>
+            />
+        </CustomView>
     );
 };
 
@@ -55,6 +56,6 @@ const styles = StyleSheet.create({
     purpleBox: {
         width: 150,
         height: 150,
-        backgroundColor: colors.primary,
+        // backgroundColor: colors.primary,
     },
 });

@@ -1,11 +1,13 @@
 import { ScrollView, RefreshControl } from 'react-native';
 import { Title } from '../../components';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useState } from 'react';
-import { colors, globalStyles } from '../../../config/theme/theme';
+import { useContext, useState } from 'react';
+import { globalStyles } from '../../../config/theme/theme';
+import { ThemeContext } from '../../context/ThemeContext';
 
 export const PullToRefreshScreen = () => {
     const [isRefreshing, setIsRefreshing] = useState(false);
+    const { colors } = useContext(ThemeContext);
     const { top } = useSafeAreaInsets();
 
     const onRefresh = () => {
@@ -22,6 +24,8 @@ export const PullToRefreshScreen = () => {
                     refreshing={isRefreshing}
                     progressViewOffset={top}
                     colors={[colors.primary, 'red', 'orange', 'green']}
+                    progressBackgroundColor={colors.cardBackground}
+                    tintColor={colors.text}
                     onRefresh={onRefresh}
                 />
             }

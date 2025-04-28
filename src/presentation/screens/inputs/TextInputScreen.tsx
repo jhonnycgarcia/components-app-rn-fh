@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { KeyboardAvoidingView, Platform, ScrollView, Text, TextInput, View } from 'react-native';
 
 import { Card, CustomView, Title } from '../../components';
 import { globalStyles } from '../../../config/theme/theme';
+import { ThemeContext } from '../../context/ThemeContext';
 
 export const TextInputScreen = () => {
+    const { colors } = useContext(ThemeContext);
     const [form, setForm] = useState({
         name: '',
         email: '',
@@ -24,6 +26,7 @@ export const TextInputScreen = () => {
                             autoCapitalize={'words'}
                             autoCorrect={false}
                             onChangeText={(value) => console.log(value)}
+                            placeholderTextColor={colors.text}
                         />
                         <TextInput
                             style={globalStyles.input}
@@ -32,6 +35,7 @@ export const TextInputScreen = () => {
                             autoCorrect={false}
                             keyboardType="email-address"
                             onChangeText={(value) => setForm({ ...form, email: value })}
+                            placeholderTextColor={colors.text}
                         />
                         <TextInput
                             style={globalStyles.input}
@@ -40,25 +44,26 @@ export const TextInputScreen = () => {
                             autoCorrect={false}
                             keyboardType="phone-pad"
                             onChangeText={(value) => setForm({ ...form, phone: value })}
+                            placeholderTextColor={colors.text}
                         />
                     </Card>
                     <View style={{ height: 10 }} />
                     <Card>
-                        <Text>{JSON.stringify(form, null, 2)}</Text>
-                        <Text>{JSON.stringify(form, null, 2)}</Text>
-                        <Text>{JSON.stringify(form, null, 2)}</Text>
-                        <Text>{JSON.stringify(form, null, 2)}</Text>
-                        <Text>{JSON.stringify(form, null, 2)}</Text>
-                        <Text>{JSON.stringify(form, null, 2)}</Text>
-                        <Text>{JSON.stringify(form, null, 2)}</Text>
-                        <Text>{JSON.stringify(form, null, 2)}</Text>
-                        <Text>{JSON.stringify(form, null, 2)}</Text>
-                        <Text>{JSON.stringify(form, null, 2)}</Text>
-                        <Text>{JSON.stringify(form, null, 2)}</Text>
-                        <Text>{JSON.stringify(form, null, 2)}</Text>
-                        <Text>{JSON.stringify(form, null, 2)}</Text>
-                        <Text>{JSON.stringify(form, null, 2)}</Text>
-                        <Text>{JSON.stringify(form, null, 2)}</Text>
+                        <Text style={{ color: colors.text }}>{JSON.stringify(form, null, 2)}</Text>
+                        <Text style={{ color: colors.text }}>{JSON.stringify(form, null, 2)}</Text>
+                        <Text style={{ color: colors.text }}>{JSON.stringify(form, null, 2)}</Text>
+                        <Text style={{ color: colors.text }}>{JSON.stringify(form, null, 2)}</Text>
+                        <Text style={{ color: colors.text }}>{JSON.stringify(form, null, 2)}</Text>
+                        <Text style={{ color: colors.text }}>{JSON.stringify(form, null, 2)}</Text>
+                        <Text style={{ color: colors.text }}>{JSON.stringify(form, null, 2)}</Text>
+                        <Text style={{ color: colors.text }}>{JSON.stringify(form, null, 2)}</Text>
+                        <Text style={{ color: colors.text }}>{JSON.stringify(form, null, 2)}</Text>
+                        <Text style={{ color: colors.text }}>{JSON.stringify(form, null, 2)}</Text>
+                        <Text style={{ color: colors.text }}>{JSON.stringify(form, null, 2)}</Text>
+                        <Text style={{ color: colors.text }}>{JSON.stringify(form, null, 2)}</Text>
+                        <Text style={{ color: colors.text }}>{JSON.stringify(form, null, 2)}</Text>
+                        <Text style={{ color: colors.text }}>{JSON.stringify(form, null, 2)}</Text>
+                        <Text style={{ color: colors.text }}>{JSON.stringify(form, null, 2)}</Text>
                     </Card>
                     <View style={{ height: 10 }} />
                     <Card>
@@ -69,6 +74,7 @@ export const TextInputScreen = () => {
                             autoCorrect={false}
                             keyboardType="email-address"
                             onChangeText={(value) => setForm({ ...form, email: value })}
+                            placeholderTextColor={colors.text}
                         />
                     </Card>
                 </CustomView>

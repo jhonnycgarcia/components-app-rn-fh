@@ -3,8 +3,11 @@ import prompt from 'react-native-prompt-android';
 
 import { Button, CustomView, Title } from '../../components';
 import { showPrompt } from '../../../config/adapters/prompt.adapter';
+import { useContext } from 'react';
+import { ThemeContext } from '../../context/ThemeContext';
 
 export const AlertScreen = () => {
+    const { isDark } = useContext(ThemeContext);
 
     const createTwoButtonAlert = () =>
         Alert.alert('Alert Title', 'My Alert Msg', [
@@ -15,7 +18,9 @@ export const AlertScreen = () => {
 
           },
           {text: 'OK', onPress: () => console.log('OK Pressed')},
-    ]);
+        ], {
+            userInterfaceStyle: isDark ? 'dark' : 'light',
+        });
 
     const createThreeButtonAlert = () =>
         Alert.alert('Alert Title', 'My Alert Msg', [
@@ -32,6 +37,7 @@ export const AlertScreen = () => {
         ], {
             cancelable: true,
             onDismiss: () => console.log('onDismiss'),
+            userInterfaceStyle: isDark ? 'dark' : 'light',
         });
 
     const onShowPrompt = () => {

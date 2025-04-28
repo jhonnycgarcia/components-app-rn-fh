@@ -1,10 +1,10 @@
-import { View, FlatList, Image, ActivityIndicator } from 'react-native';
-import { useState } from 'react';
-import { colors } from '../../../config/theme/theme';
+import { View, FlatList, ActivityIndicator } from 'react-native';
+import { useContext, useState } from 'react';
 import { FadeInImage } from '../../components';
+import { ThemeContext } from '../../context/ThemeContext';
 
 export const InfiniteScrollScreen = () => {
-
+    const { colors } = useContext(ThemeContext);
     const [numbers, setNumbers] = useState([1, 2, 3, 4, 5]);
 
     const loadMore = () => {
@@ -15,7 +15,7 @@ export const InfiniteScrollScreen = () => {
     };
 
     return (
-        <View style={{ backgroundColor: 'black' }}>
+        <View style={{ backgroundColor: colors.background }}>
             <FlatList
                 data={numbers}
                 renderItem={({ item }) => <ListItem item={item} />}
