@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState, type PropsWithChildren } from 'react';
 import { darkColors, lightColors, ThemeColors } from '../../config/theme/theme';
 import { Appearance, AppState, useColorScheme } from 'react-native';
+import { DarkTheme, DefaultTheme, NavigationContainer } from '@react-navigation/native';
 
 type ThemeColor = 'light' | 'dark';
 
@@ -40,16 +41,21 @@ export const ThemeProvider = ({ children }: PropsWithChildren) => {
     const currentColors = currentTheme === 'light'
         ? lightColors
         : darkColors;
+    const isDark = currentTheme === 'dark';
 
     return (
-        <ThemeContext.Provider
-            value={{
-                currentTheme,
-                colors: currentColors,
-                isDark: currentTheme === 'dark',
-                setTheme,
-            }}
-        >{children}
-        </ThemeContext.Provider>
+        <NavigationContainer
+            theme={isDark ? DarkTheme : DefaultTheme}
+        >
+            <ThemeContext.Provider
+                value={{
+                    currentTheme,
+                    colors: currentColors,
+                    isDark,
+                    setTheme,
+                }}
+            >{children}
+            </ThemeContext.Provider>
+        </NavigationContainer>
     );
 };
