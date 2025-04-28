@@ -1,6 +1,9 @@
-import { View, Text, ImageSourcePropType, useWindowDimensions, Image } from 'react-native';
+import { View, Text, ImageSourcePropType, useWindowDimensions, Image, NativeScrollEvent, NativeSyntheticEvent } from 'react-native';
 import { colors, globalStyles } from '../../../config/theme/theme';
 import { FlatList } from 'react-native-gesture-handler';
+import { Button } from '../../components';
+import { useRef, useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 
 interface Slide {
     title: string;
@@ -27,6 +30,26 @@ const items: Slide[] = [
 ];
 
 export const SlidesScreen = () => {
+
+    const [currentSliceIndex, setCurrentSliceIndex] = useState(0);
+    const flatListRef = useRef<FlatList>(null);
+    const navigation = useNavigation();
+
+    const onScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+        const { contentOffset, layoutMeasurement } = event.nativeEvent;
+        const currentIndex = Math.floor(contentOffset.x / layoutMeasurement.width);
+
+        setCurrentSliceIndex(currentIndex > 0 ? currentIndex : 0);
+    };
+
+    const scrollToSlice = (index: number) => {
+        if(!flatListRef.current) return;
+        flatListRef.current.scrollToIndex({
+            index,
+            animated: true,
+        });
+    };
+
     return (
         <View
             style={{
@@ -35,6 +58,7 @@ export const SlidesScreen = () => {
             }}
         >
             <FlatList
+                ref={flatListRef}
                 data={items}
                 keyExtractor={(item) => item.title}
 
@@ -43,7 +67,29 @@ export const SlidesScreen = () => {
                 pagingEnabled
 
                 scrollEnabled={false}
+                onScroll={onScroll}
             />
+
+            {
+                currentSliceIndex === items.length - 1 ? (
+                    <Button
+                        text='Finalizar'
+                        onPress={() => navigation.goBack()}
+                    />
+                ):(
+                    <Button
+                        text='Iniciar'
+                        style={{
+                            position: 'absolute',
+                            bottom: 60,
+                            right: 30,
+                            width: 100,
+                        }}
+                        onPress={() => scrollToSlice(currentSliceIndex + 1)}
+                    />
+                )
+            }
+
         </View>
     );
 };
