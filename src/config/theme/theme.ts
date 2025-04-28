@@ -39,12 +39,12 @@ export const globalStyles = StyleSheet.create({
   title: {
     fontSize: 30,
     fontWeight: 'bold',
-    color: colors.text,
+    // color: colors.text,
   },
   subTitle: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: colors.text,
+    // color: colors.text,
   },
 
   input: {
@@ -54,12 +54,12 @@ export const globalStyles = StyleSheet.create({
     padding: 10,
     borderColor: 'rgba(0, 0, 0, 0.3)',
     borderRadius: 10,
-    color: colors.text,
+    // color: colors.text,
   },
 
   mainContainer: {
     flex: 1,
-    backgroundColor: colors.background,
+    // backgroundColor: colors.background,
   },
   globalMargin: {
     paddingHorizontal: 20,
@@ -67,13 +67,13 @@ export const globalStyles = StyleSheet.create({
   },
 
   btnPrimary: {
-    backgroundColor: colors.primary,
+    // backgroundColor: colors.primary,
     borderRadius: 10,
     padding: 10,
     alignItems: 'center',
   },
   btnPrimaryText: {
-    color: colors.text,
+    // color: colors.text,
     fontSize: 16,
   },
 });

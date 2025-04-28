@@ -1,13 +1,14 @@
-import { View } from 'react-native';
+import { Text, View } from 'react-native';
 import { Button, CustomView, Title } from '../../components';
 import { useContext } from 'react';
 import { ThemeContext } from '../../context/ThemeContext';
 
 export const ChangeThemeScreen = () => {
-    const { setTheme } = useContext(ThemeContext);
+    const { setTheme, currentTheme, colors } = useContext(ThemeContext);
+
     return (
         <CustomView margin>
-            <Title text="Change Theme" safe />
+            <Title text={`Change Theme ${currentTheme}`} safe />
 
             <Button
                 text="Light"
@@ -20,6 +21,11 @@ export const ChangeThemeScreen = () => {
                 text="Dark"
                 onPress={() => setTheme('dark')}
             />
+            <View style={{ height: 10 }} />
+
+            <Text style={{ color: colors.text }}>
+                {JSON.stringify(colors, null, 2)}
+            </Text>
         </CustomView>
     );
 };
