@@ -87,7 +87,7 @@ export const HomeScreen = () => {
           }
           <View style={{ marginTop: 30 }} />
           {
-            menuItems.map(({ name, component, icon }, index) => (
+            uiMenuItems.map(({ name, component, icon }, index) => (
               <MenuItem
                 key={component}
                 name={name}
@@ -100,7 +100,7 @@ export const HomeScreen = () => {
           }
           <View style={{ marginTop: 30 }} />
           {
-            uiMenuItems.map(({ name, component, icon }, index) => (
+            menuItems.map(({ name, component, icon }, index) => (
               <MenuItem
                 key={component}
                 name={name}
